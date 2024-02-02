@@ -1,0 +1,68 @@
+version: '3.8'
+
+services:
+  nginx:
+    container_name: nginx
+    image: kimdahui/toritest-nginx:${TAG}
+#    image: kimdahui/toritest-nginx:0.0.1-SNAPSHOT
+    build:
+      context: nginx
+      dockerfile: Dockerfile
+    restart: unless-stopped
+    ports:
+      - "80:80"
+    networks:
+      - jenkins-network
+    volumes:
+      - /policy:/usr/share/nginx/html
+    depends_on:
+      - back
+#      - front
+
+  front:
+    container_name: front
+    image: kimdahui/toritest-front
+#    image: kimdahui/toritest-front:0.0.1-SNAPSHOT
+    build:
+      context: frontend
+      dockerfile: Dockerfile
+    restart: always
+    command : npm start
+    ports:
+      - "3000:3000"
+    networks:
+      - jenkins-network
+
+  back:
+    container_name: back
+    image: kimdahui/toritest-back:${TAG}
+#    image: kimdahui/toritest-back:0.0.1-SNAPSHOT
+    build:
+      context: backend
+      dockerfile: Dockerfile
+    restart: always
+    ports:
+      - "8080:8080"
+    networks:
+      - jenkins-network
+    environment:
+      - "SPRING_PROFILES_ACTIVE=prod"
+
+  redis:
+    container_name: redis
+    hostname: redis
+    image: redis:alpine
+    restart: unless-stopped
+    networks:
+      - jenkins-network
+    volumes:
+      - ~/redis/data:/data
+    user: root
+    command: redis-server --requirepass ${REDIS_PASSWORD}
+#    command: redis-server --requirepass REDISPASSWORD
+    ports:
+      - "6379:6379"
+
+networks:
+  jenkins-network:
+    external: true
