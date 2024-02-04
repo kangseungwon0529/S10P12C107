@@ -1,0 +1,11 @@
+Model Information:
+* title:	humen
+* source:	https://sketchfab.com/3d-models/humen-780e8dcb406c4953b155261624c253c8
+* author:	byggnadsfirmamarcuswiik (https://sketchfab.com/byggnadsfirmamarcuswiik)
+
+Model License:
+* license type:	CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)
+* requirements:	Author must be credited. Commercial use is allowed.
+
+If you use this 3D model in your project be sure to copy paste this credit wherever you share it:
+This work is based on "humen" (https://sketchfab.com/3d-models/humen-780e8dcb406c4953b155261624c253c8) by byggnadsfirmamarcuswiik (https://sketchfab.com/byggnadsfirmamarcuswiik) licensed under CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)
